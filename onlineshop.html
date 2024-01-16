@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shops - JobQue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #444;
+            padding: 0.5em 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        section {
+            padding: 1em;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .post-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            padding: 1em;
+            width: 300px;
+            background-color: #fff;
+            border-radius: 5px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+            color: #333;
+        }
+
+        .post-description {
+            margin-bottom: 0.5em;
+            color: #555;
+        }
+
+        .contact-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 0.5em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .contact-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 5px;
+        }
+
+        .close-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 0.5em;
+            cursor: pointer;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .message-input {
+            width: 100%;
+            padding: 0.5em;
+            margin-top: 1em;
+        }
+
+        .send-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 0.5em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 1em;
+        }
+
+        /* Background images for each feature */
+        .post.feature1 {
+            background-image: url('https://d2wmjgcwxowcvo.cloudfront.net/download-2022.1.23_19.7.26-dirums-(dirums.com)/media/Woman_with_pot_Mahesh_Sharma_Dirums_frame_1.jpg');
+        }
+
+        .post.feature2 {
+            background-image: url('https://media.assettype.com/homegrown%2Fimport%2Fbook%2F13184-yiaftvuywa-1622203849.jpeg');
+        }
+
+        .post.feature3 {
+            background-image: url('https://c8.alamy.com/comp/HNW0G8/two-kutchkachchh-village-women-wearing-traditional-colorful-clothessarees-HNW0G8.jpg');
+        }
+
+        .post.feature4 {
+            background-image: url('https://cdn.yehaindia.com/wp-content/uploads/2020/06/footwear-1.jpg');
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Online Shops - JobQue</h1>
+    </header>
+
+    <nav>
+        <a href="#findJob">Find Job</a>
+        <a href="#onlineShop">Online Shop</a>
+        <a href="#qualification">Qualification</a>
+        <a href="#chat">Chat</a>
+    </nav>
+
+    <section id="onlineShop">
+        <h2>Online Shops</h2>
+        <div class="post-container">
+            <div class="post feature1">
+                <div class="post-title">Artwork</div>
+                <div class="post-description">Beautiful artwork for sale. Limited stock!</div>
+                <button class="contact-button" onclick="openContactModal('Artwork')">Contact</button>
+            </div>
+
+            <div class="post feature2">
+                <div class="post-title">Handcrafted Jewelry</div>
+                <div class="post-description">Unique handcrafted jewelry pieces. Order now!</div>
+                <button class="contact-button" onclick="openContactModal('Jewelry')">Contact</button>
+            </div>
+
+            <div class="post feature3">
+                <div class="post-title">Classic Clothes for Sale</div>
+                <div class="post-description">Elegant and classic clothes. Check out our collection!</div>
+                <button class="contact-button" onclick="openContactModal('Classic Clothes')">Contact</button>
+            </div>
+
+            <div class="post feature4">
+                <div class="post-title">Handmade Footwears</div>
+                <div class="post-description">Comfortable and stylish handmade footwears. Grab yours now!</div>
+                <button class="contact-button" onclick="openContactModal('Handmade Footwears')">Contact</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeContactModal">&times;</span>
+            <h2>Contact Seller</h2>
+            <input type="text" id="messageInput" class="message-input" placeholder="Type your message...">
+            <button class="send-button" onclick="sendMessage()">Send Message</button>
+        </div>
+    </div>
+
+    <script>
+        function openContactModal(product) {
+            var modal = document.getElementById('contactModal');
+            modal.style.display = 'flex';
+            document.getElementById('messageInput').placeholder = 'Interested in ' + product;
+        }
+
+        function closeContactModal() {
+            var modal = document.getElementById('contactModal');
+            modal.style.display = 'none';
+        }
+
+        function sendMessage() {
+            var messageInput = document.getElementById('messageInput');
+            alert('Message Sent: ' + messageInput.value);
+            closeContactModal();
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+

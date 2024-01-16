@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Jobs - Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        #customer-needs {
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .customer-need {
+            margin-bottom: 10px;
+        }
+
+        .employee-chat {
+            max-width: 600px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            padding: 10px;
+            max-height: 200px;
+            overflow-y: scroll;
+             background-color: black;
+        }
+
+        .chat-input {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .message-input {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .send-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Find Jobs - Chat</h1>
+    </header>
+
+    <main>
+        <div id="customer-needs">
+            <div class="customer-need">
+                Customer:
+                <span class="customer-need-text">Need a plumber, pay $10</span>
+                <div class="employee-chat" id="employee-chat-1">
+                    <div class="chat-messages"></div>
+                    <div class="chat-input">
+                        <input type="text" class="message-input" placeholder="Type your message">
+                        <button class="send-button" onclick="sendMessage(1)">Send</button>
+                    </div>
+                </div>
+            </div>
+            <div class="customer-need">
+                Customer:
+                <span class="customer-need-text">Need an electrician, pay $15</span>
+                <div class="employee-chat" id="employee-chat-2">
+                    <div class="chat-messages"></div>
+                    <div class="chat-input">
+                        <input type="text" class="message-input" placeholder="Type your message">
+                        <button class="send-button" onclick="sendMessage(2)">Send</button>
+                    </div>
+                </div>
+            </div>
+            <div class="customer-need">
+                Customer:
+                <span class="customer-need-text">Need a babysitter, pay $25</span>
+                <div class="employee-chat" id="employee-chat-3">
+                    <div class="chat-messages"></div>
+                    <div class="chat-input">
+                        <input type="text" class="message-input" placeholder="Type your message">
+                        <button class="send-button" onclick="sendMessage(3)">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function sendMessage(chatId) {
+            var messageInput = document.querySelector(`#employee-chat-${chatId} .message-input`);
+            var message = messageInput.value.trim();
+
+            if (message !== '') {
+                var chatMessages = document.querySelector(`#employee-chat-${chatId} .chat-messages`);
+                var newMessage = document.createElement('div');
+                newMessage.textContent = message;
+                chatMessages.appendChild(newMessage);
+
+                // Clear the input field
+                messageInput.value = '';
+
+                // Scroll to the bottom to show the latest message
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+
+ 
+
+
+
+
+
